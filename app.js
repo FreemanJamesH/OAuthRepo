@@ -35,12 +35,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+console.log(process.env.HOST + '/auth/linkedin/callback');
 
 passport.use(new LinkedInStrategy({
   clientID: process.env.LINKEDIN_CLIENT_ID,
   clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-  callbackURL: process.env.HOST + "/auth/linkedin/callback",
-  scope: ['r_emailaddress', 'r_basicprofile'],
+  callbackURL: process.env.HOST + '/auth/linkedin/callback',
+  // scope: ['r_emailaddress', 'r_basicprofile'],
 }, function(accessToken, refreshToken, profile, done) {
   // asynchronous verification, for effect...
   process.nextTick(function() {
